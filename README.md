@@ -14,3 +14,13 @@ In your server.js handle each of the user verbs which will be hit via AJAX as fo
 view: GET, returns the full array of inventory
 add: POST, receives a new object, adds it to the existing inventory
 search: POST, receives a string that we'll check against existing objects in the inventory & returns an array of matches (hint: research the STRING.includes JS method)
+
+Stretch Goals:
+
+Add the following features:
+
+clear appropriate input(s) on successful add
+clear appropriate search input(s) on search completion
+add search functionality for description
+display "no matches" if empty array is returned for a search
+"remove" button for each item that makes use of a DELETE route
