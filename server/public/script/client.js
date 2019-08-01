@@ -4,9 +4,12 @@ function handlerReady() {
   console.log('jquery is up and running');
   $('#inputBtn').on('click', addItems);
   $('#searchBtn').on('click', searchItem);
+  $('#clearSearchBtn').on('click', getItems);
+  getItems();
 }
 
 function getItems() {
+  $('#searchItem').val('');
   console.log('getting items');
   $.ajax({
     method: 'GET',
@@ -36,16 +39,16 @@ function addItems() {
 }
 
 function searchItem() {
-  let searchItem = $('#searchItem').val(); 
-  console.log('searching for', searchItem);
+  let searchString = $('#searchItem').val(); 
+  console.log('searching for', searchString);
   $.ajax({
     method: 'POST',
     url: '/searchitems',
-    data: searchItem, //receiving a string
+    data: { text: searchString}//receiving a string (needs to be an object)
   }).then((response) => {
     console.log('searching data', response);
+    searchList(response);
   })
-  getItems();
 }
 
 function renderItems(items) {
@@ -55,11 +58,12 @@ function renderItems(items) {
   }
 }
 
-// function searchList(inv) {
-//   let searchItem = $('#searchItem').val();
-//   for (const item of inv) {
-//     if(item.name.includes(searchItem)){
-//       searchList.push(item.name).push(item.description);
-//     }
-//   }
-// }
+function searchList(inv) {
+  $('#invList').empty(); 
+  for (const item of inv) {
+    $('#invList').append(`<li><img src="http://fc07.deviantart.net/fs42/f/2009/164/2/f/Free_Wolf_Icon_Template_by_RatRabbit.png">${item.name}: ${item.description}</li>`);
+  }
+  if (inv === ''){
+    $('#invList').append(`<li>No Matches :(</li>`);
+  }
+}

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Server Side Inventory</title>
-  <script src="venders/jquery-v3.4.1.js"></script>
+  <script src="vendors/jquery-v3.4.1.js"></script>
   <script src="script/client.js"></script>
   <link rel="stylesheet" href="styles/style.css">
 </head>
@@ -14,8 +14,10 @@
     <h1>Inventory Time!</h1>
   </header>
   <section id="inputs">
-<input type="text" placeholder="Name" id="newItem"> <input type="text" placeholder="Description" id="itemDescription"><button id="inputBtn">Add</button>
+<input type="text" placeholder="Name" id="newItem"> 
+<input type="text" placeholder="Description" id="itemDescription"><button id="inputBtn">Add</button><br>
 <input id="searchItem" type="text" placeholder="search for"> <button id="searchBtn">Search</button>
+<button id="clearSearchBtn">Clear Search</button>
   </section>
   <main>
     <ul id="invList">
