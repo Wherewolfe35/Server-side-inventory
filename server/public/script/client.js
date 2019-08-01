@@ -3,6 +3,7 @@ $(document).ready(handlerReady);
 function handlerReady() {
   console.log('jquery is up and running');
   $('#inputBtn').on('click', addItems);
+  $('#searchBtn').on('click', searchItem);
 }
 
 function getItems() {
@@ -34,6 +35,19 @@ function addItems() {
   $('#itemDescription').val('');
 }
 
+function searchItem() {
+  let searchItem = $('#searchItem').val(); 
+  console.log('searching for', searchItem);
+  $.ajax({
+    method: 'POST',
+    url: '/searchitems',
+    data: searchItem, //receiving a string
+  }).then((response) => {
+    console.log('searching data', response);
+  })
+  getItems();
+}
+
 function renderItems(items) {
   $('#invList').empty(); // gets rid of old stuff
   for (const item of items) {
@@ -41,3 +55,11 @@ function renderItems(items) {
   }
 }
 
+// function searchList(inv) {
+//   let searchItem = $('#searchItem').val();
+//   for (const item of inv) {
+//     if(item.name.includes(searchItem)){
+//       searchList.push(item.name).push(item.description);
+//     }
+//   }
+// }
